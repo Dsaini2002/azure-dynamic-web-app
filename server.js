@@ -5,7 +5,7 @@ const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+
 // 🔹  MongoDB Connection
 const MONGO_URI =
   "mongodb+srv://vkm2735:OpenMongoDB123@cluster0.9gfnm.mongodb.net/?appName=Cluster0";
@@ -48,6 +48,9 @@ app.get("/users", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+app.use(express.static(__dirname));
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "index.html"));
 });
@@ -57,3 +60,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
